@@ -1,0 +1,8 @@
+welcome:
+  message: ${WELCOME_MESSAGE}
+
+environment:
+  port: ${PORT}
+  memoryLimit: ${MEMORY_LIMIT}
+  cfInstanceIndex: ${CF_INSTANCE_INDEX}
+  cfInstanceAddress: ${CF_INSTANCE_ADDR}
