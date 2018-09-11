@@ -11,6 +11,7 @@ import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class InMemoryTimeEntryRepositoryTest {
+
     @Test
     public void create() throws Exception {
         InMemoryTimeEntryRepository repo = new InMemoryTimeEntryRepository();
@@ -39,11 +40,8 @@ public class InMemoryTimeEntryRepositoryTest {
         repo.create(new TimeEntry(123L, 456L, LocalDate.parse("2017-01-08"), 8));
         repo.create(new TimeEntry(789L, 654L, LocalDate.parse("2017-01-07"), 4));
 
-        List<TimeEntry> expected = asList(
-                new TimeEntry(1L, 123L, 456L, LocalDate.parse("2017-01-08"), 8),
-                new TimeEntry(2L, 789L, 654L, LocalDate.parse("2017-01-07"), 4)
-        );
-        assertThat(repo.list()).isEqualTo(expected);
+        assertThat(repo.list()).containsExactly(new TimeEntry(1L, 123L, 456L, LocalDate.parse("2017-01-08"), 8),
+                new TimeEntry(2L, 789L, 654L, LocalDate.parse("2017-01-07"), 4));
     }
 
     @Test
@@ -63,9 +61,11 @@ public class InMemoryTimeEntryRepositoryTest {
     @Test
     public void delete() throws Exception {
         InMemoryTimeEntryRepository repo = new InMemoryTimeEntryRepository();
-        TimeEntry created = repo.create(new TimeEntry(123L, 456L, LocalDate.parse("2017-01-08"), 8));
+        TimeEntry deletionCandidate = new TimeEntry(123L, 456L, LocalDate.parse("2017-01-08"), 8);
+        TimeEntry created = repo.create(deletionCandidate);
 
-        repo.delete(created.getId());
+        TimeEntry deleted = repo.delete(created.getId());
         assertThat(repo.list()).isEmpty();
+        assertThat(deleted).isEqualTo(deletionCandidate);
     }
 }
