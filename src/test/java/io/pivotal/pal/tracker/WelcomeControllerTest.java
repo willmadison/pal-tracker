@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -24,7 +25,7 @@ public class WelcomeControllerTest {
 
     @Test
     public void shouldWelcomeNewcomers() throws Exception {
-        mvc.perform(get("/"))
+        mvc.perform(get("/").with(httpBasic("user","password")))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Hello from test")));
     }

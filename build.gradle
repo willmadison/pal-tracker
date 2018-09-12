@@ -41,6 +41,8 @@ dependencies {
     compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.1")
     compile("org.springframework.boot:spring-boot-starter-jdbc")
     compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-security")
+    compile("org.springframework.security:spring-security-test")
     compile("mysql:mysql-connector-java:8.0.11")
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }

@@ -17,6 +17,8 @@ public class EnvironmentConfiguration {
 
     private String dataSourceUrl;
 
+    public boolean disableHttps = true;
+
     public String getPort() {
         return port;
     }
@@ -55,5 +57,13 @@ public class EnvironmentConfiguration {
 
     public void setDataSourceUrl(String dataSourceUrl) {
         this.dataSourceUrl = dataSourceUrl;
+    }
+
+    public boolean isDisableHttps() {
+        return disableHttps;
+    }
+
+    public void setDisableHttps(boolean disableHttps) {
+        this.disableHttps = disableHttps;
     }
 }

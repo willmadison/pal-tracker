@@ -10,12 +10,15 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -29,7 +32,9 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @SpringBootTest(classes = PalTrackerApplication.class, webEnvironment = RANDOM_PORT)
 public class TimeEntryApiTest {
 
-    @Autowired
+    @LocalServerPort
+    private String port;
+
     private TestRestTemplate restTemplate;
 
     private TimeEntry timeEntry = new TimeEntry(123L, 456L, LocalDate.parse("2017-01-08"), 8);
@@ -43,6 +48,12 @@ public class TimeEntryApiTest {
         jdbcTemplate.execute("TRUNCATE time_entries");
 
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+
+        RestTemplateBuilder builder = new RestTemplateBuilder()
+                .rootUri("http://localhost:" + port)
+                .basicAuthorization("user", "password");
+
+        restTemplate = new TestRestTemplate(builder);
     }
 
     @Test

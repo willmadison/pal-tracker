@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -31,7 +32,7 @@ public class EnvControllerTest {
 
     @Test
     public void itReturnsTheAppropriateEnvironment() throws Exception {
-        MvcResult result = mvc.perform(get("/env")).andExpect(status().isOk()).andReturn();
+        MvcResult result = mvc.perform(get("/env").with(httpBasic("user","password"))).andExpect(status().isOk()).andReturn();
 
         TypeReference<HashMap<String, String>> typeRef
                 = new TypeReference<HashMap<String, String>>() {
