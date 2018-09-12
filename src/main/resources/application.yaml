@@ -1,3 +1,12 @@
+management:
+  endpoints:
+    web:
+      base-path: /
+  endpoint:
+    health:
+      show-details: always
+
+
 welcome:
   message: ${WELCOME_MESSAGE}
 

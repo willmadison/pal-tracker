@@ -7,3 +7,11 @@ environment:
     cfInstanceIndex: ${CF_INSTANCE_INDEX}
     cfInstanceAddress: ${CF_INSTANCE_ADDR}
     dataSourceUrl: ${SPRING_DATASOURCE_URL}
+
+management:
+    endpoints:
+        web:
+            base-path: /
+    endpoint:
+        health:
+            show-details: always
