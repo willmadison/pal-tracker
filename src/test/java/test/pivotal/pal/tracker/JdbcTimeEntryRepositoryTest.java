@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
@@ -90,7 +91,7 @@ public class JdbcTimeEntryRepositoryTest {
                 "VALUES (999, 123, 321, '2017-01-09', 8), (888, 456, 678, '2017-01-08', 9)"
         );
 
-        List<TimeEntry> timeEntries = subject.list();
+        List<TimeEntry> timeEntries = new ArrayList<>(subject.list());
         assertThat(timeEntries.size()).isEqualTo(2);
 
         TimeEntry timeEntry = timeEntries.get(0);

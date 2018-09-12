@@ -15,6 +15,8 @@ public class EnvironmentConfiguration {
 
     private String cfInstanceAddress;
 
+    private String dataSourceUrl;
+
     public String getPort() {
         return port;
     }
@@ -45,5 +47,13 @@ public class EnvironmentConfiguration {
 
     public void setCfInstanceAddress(String cfInstanceAddress) {
         this.cfInstanceAddress = cfInstanceAddress;
+    }
+
+    public String getDataSourceUrl() {
+        return dataSourceUrl;
+    }
+
+    public void setDataSourceUrl(String dataSourceUrl) {
+        this.dataSourceUrl = dataSourceUrl;
     }
 }

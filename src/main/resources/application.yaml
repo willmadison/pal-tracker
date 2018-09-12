@@ -6,3 +6,4 @@ environment:
   memoryLimit: ${MEMORY_LIMIT}
   cfInstanceIndex: ${CF_INSTANCE_INDEX}
   cfInstanceAddress: ${CF_INSTANCE_ADDR}
+  dataSourceUrl: ${SPRING_DATASOURCE_URL}
